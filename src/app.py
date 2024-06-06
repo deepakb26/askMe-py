@@ -42,7 +42,7 @@ def get_vector_store(url):
 
 
 def get_context_retriever_chain(vector_store):
-    llm = ChatGoogleGenerativeAI(model="gemini-1.0-pro", google_api_key="AIzaSyA8Csyal_5u79AW7No8Vajar3DiodWLksk")
+    llm = ChatGoogleGenerativeAI(model="gemini-1.0-pro", google_api_key=GOOGLE_API_KEY)
     retriever = vector_store.as_retriever()
         
     prompt = ChatPromptTemplate.from_messages([
@@ -56,7 +56,7 @@ def get_context_retriever_chain(vector_store):
     return retriever_chain
 
 def get_conv_rag_chain(retriever_chain):
-    llm = ChatGoogleGenerativeAI(model="gemini-1.0-pro", google_api_key="AIzaSyA8Csyal_5u79AW7No8Vajar3DiodWLksk")      
+    llm = ChatGoogleGenerativeAI(model="gemini-1.0-pro", google_api_key=GOOGLE_API_KEY)      
     prompt = ChatPromptTemplate.from_messages([
     ("user", "Answer the user's questions based on the below context:\n\n{context}"),
       MessagesPlaceholder(variable_name="chat_history"),   #appends history if it exist
